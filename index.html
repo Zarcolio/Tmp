@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>White Circle Animation</title>
+  <title>Stick Figure Animation</title>
   <style>
     body {
       margin: 0;
@@ -25,46 +25,80 @@
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const largeCircleRadius = 100;
-    const smallCircleRadius = 0.05 * largeCircleRadius;
-    const spaceBetweenSmallAndLarge = 50; // Adjust this value for the desired space
+    const smallStickFigureSize = 0.1 * largeCircleRadius;
+    const spaceBetweenSmallAndLarge = 20; // Adjust this value for the desired space
     let angle = 0;
 
-    function drawCircle(x, y, radius, color) {
+    function drawStickFigure(x, y, size, color) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+
+      // Head
       ctx.beginPath();
-      ctx.arc(x, y, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = color;
-      ctx.fill();
+      ctx.arc(x, y - size * 0.3, size * 0.1, 0, 2 * Math.PI);
+      ctx.stroke();
+      ctx.closePath();
+
+      // Body
+      ctx.beginPath();
+      ctx.moveTo(x, y - size * 0.2);
+      ctx.lineTo(x, y + size * 0.3);
+      ctx.stroke();
+      ctx.closePath();
+
+      // Arms
+      ctx.beginPath();
+      ctx.moveTo(x, y - size * 0.1);
+      ctx.lineTo(x - size * 0.2, y);
+      ctx.stroke();
+      ctx.moveTo(x, y - size * 0.1);
+      ctx.lineTo(x + size * 0.2, y);
+      ctx.stroke();
+      ctx.closePath();
+
+      // Legs
+      ctx.beginPath();
+      ctx.moveTo(x, y + size * 0.3);
+      ctx.lineTo(x - size * 0.1, y + size * 0.5);
+      ctx.stroke();
+      ctx.moveTo(x, y + size * 0.3);
+      ctx.lineTo(x + size * 0.1, y + size * 0.5);
+      ctx.stroke();
       ctx.closePath();
     }
 
-    function animateCircles() {
+    function animateStickFigures() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw the large circle
-      drawCircle(centerX, centerY, largeCircleRadius, 'white');
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, largeCircleRadius, 0, 2 * Math.PI);
+      ctx.fillStyle = 'white';
+      ctx.fill();
+      ctx.closePath();
 
-      // Calculate the position of the first smaller circle
-      const circle1X = centerX + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.cos(angle);
-      const circle1Y = centerY + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.sin(angle);
+      // Calculate the position of the first stick figure
+      const stickFigure1X = centerX + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.cos(angle);
+      const stickFigure1Y = centerY + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.sin(angle);
 
-      // Calculate the position of the second smaller circle
-      const circle2X = centerX + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.cos(angle + Math.PI);
-      const circle2Y = centerY + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.sin(angle + Math.PI);
+      // Calculate the position of the second stick figure
+      const stickFigure2X = centerX + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.cos(angle + Math.PI);
+      const stickFigure2Y = centerY + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.sin(angle + Math.PI);
 
-      // Draw the first smaller circle
-      drawCircle(circle1X, circle1Y, smallCircleRadius, 'white');
+      // Draw the first stick figure
+      drawStickFigure(stickFigure1X, stickFigure1Y, smallStickFigureSize, 'white');
 
-      // Draw the second smaller circle
-      drawCircle(circle2X, circle2Y, smallCircleRadius, 'white');
+      // Draw the second stick figure
+      drawStickFigure(stickFigure2X, stickFigure2Y, smallStickFigureSize, 'white');
 
       // Update the angle for next frame
       angle += 0.01;
 
-      requestAnimationFrame(animateCircles);
+      requestAnimationFrame(animateStickFigures);
     }
 
     // Start the animation
-    animateCircles();
+    animateStickFigures();
   </script>
 </body>
 </html>
