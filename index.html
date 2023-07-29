@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>White Circle Animation</title>
+  <title>Black Circle with White Border Animation</title>
   <style>
     body {
       margin: 0;
@@ -31,8 +31,11 @@
     function drawCircle(x, y, radius, color) {
       ctx.beginPath();
       ctx.arc(x, y, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = color;
-      ctx.fill();
+      ctx.strokeStyle = color; // Set the color for the stroke (border)
+      ctx.lineWidth = 1; // Set the width of the stroke to 1 pixel
+      ctx.fillStyle = 'black'; // Set the color for the fill (inside)
+      ctx.fill(); // Fill the circle
+      ctx.stroke(); // Draw the border
       ctx.closePath();
     }
 
@@ -56,7 +59,7 @@
       // Draw the second smaller circle
       drawCircle(circle2X, circle2Y, smallCircleRadius, 'white');
 
-      // Update the angle for next frame
+      // Update the angle for the next frame
       angle += 0.01;
 
       requestAnimationFrame(animateCircles);
