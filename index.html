@@ -26,6 +26,7 @@
     const centerY = canvas.height / 2;
     const largeCircleRadius = 100;
     const smallCircleRadius = 0.05 * largeCircleRadius;
+    const spaceBetweenSmallAndLarge = 10; // Adjust this value for the desired space
     let angle = 0;
 
     function drawCircle(x, y, radius, color) {
@@ -43,12 +44,12 @@
       drawCircle(centerX, centerY, largeCircleRadius, 'white');
 
       // Calculate the position of the first smaller circle
-      const circle1X = centerX + largeCircleRadius * Math.cos(angle);
-      const circle1Y = centerY + largeCircleRadius * Math.sin(angle);
+      const circle1X = centerX + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.cos(angle);
+      const circle1Y = centerY + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.sin(angle);
 
       // Calculate the position of the second smaller circle
-      const circle2X = centerX + largeCircleRadius * Math.cos(angle + Math.PI);
-      const circle2Y = centerY + largeCircleRadius * Math.sin(angle + Math.PI);
+      const circle2X = centerX + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.cos(angle + Math.PI);
+      const circle2Y = centerY + (largeCircleRadius + spaceBetweenSmallAndLarge) * Math.sin(angle + Math.PI);
 
       // Draw the first smaller circle
       drawCircle(circle1X, circle1Y, smallCircleRadius, 'white');
