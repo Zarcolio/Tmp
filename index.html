@@ -31,10 +31,10 @@
     function drawCircle(x, y, radius, color) {
       ctx.beginPath();
       ctx.arc(x, y, radius, 0, 2 * Math.PI);
-      ctx.strokeStyle = color; // Set the color for the stroke (border)
-      ctx.lineWidth = 1; // Set the width of the stroke to 1 pixel
       ctx.fillStyle = color; // Set the color for the fill (inside)
       ctx.fill(); // Fill the circle
+      ctx.strokeStyle = 'white'; // Set the color for the stroke (border)
+      ctx.lineWidth = 1; // Set the width of the stroke to 1 pixel
       ctx.stroke(); // Draw the border
       ctx.closePath();
     }
