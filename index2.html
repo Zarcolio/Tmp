@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Hole Depiction</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const blackHoleRadius = 100;
+    const accretionDiskRadius = 200;
+
+    // Function to draw a black hole
+    function drawBlackHole() {
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, blackHoleRadius, 0, 2 * Math.PI);
+      ctx.fillStyle = 'black';
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    // Function to draw an accretion disk around the black hole
+    function drawAccretionDisk() {
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, accretionDiskRadius, 0, 2 * Math.PI);
+      ctx.strokeStyle = 'orange';
+      ctx.lineWidth = 10;
+      ctx.stroke();
+      ctx.closePath();
+    }
+
+    // Function to draw an infalling object into the black hole
+    function drawInfallingObject() {
+      ctx.beginPath();
+      ctx.moveTo(centerX + blackHoleRadius, centerY);
+      ctx.lineTo(centerX + accretionDiskRadius + 40, centerY);
+      ctx.strokeStyle = 'yellow';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.moveTo(centerX + accretionDiskRadius + 40, centerY);
+      ctx.lineTo(centerX + accretionDiskRadius + 10, centerY - 10);
+      ctx.lineTo(centerX + accretionDiskRadius + 10, centerY + 10);
+      ctx.fillStyle = 'yellow';
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    // Function to draw the whole depiction
+    function drawDepiction() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the black hole
+      drawBlackHole();
+
+      // Draw the accretion disk
+      drawAccretionDisk();
+
+      // Draw the infalling object
+      drawInfallingObject();
+    }
+
+    // Start the animation
+    drawDepiction();
+  </script>
+</body>
+</html>
