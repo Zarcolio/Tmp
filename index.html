@@ -47,11 +47,11 @@
 
       // Calculate the position of the first smaller circle
       const circle1X = centerX + (largeCircleRadius + smallCircleRadius) * Math.cos(angle);
-      const circle1Y = centerY + (largeCircleRadius + smallCircleRadius) * Math.sin(angle);
+      const circle1Y = centerY - (largeCircleRadius + smallCircleRadius) * Math.sin(angle);
 
       // Calculate the position of the second smaller circle
       const circle2X = centerX + (largeCircleRadius + smallCircleRadius) * Math.cos(angle + Math.PI);
-      const circle2Y = centerY + (largeCircleRadius + smallCircleRadius) * Math.sin(angle + Math.PI);
+      const circle2Y = centerY - (largeCircleRadius + smallCircleRadius) * Math.sin(angle + Math.PI);
 
       // Draw the first smaller circle
       drawCircle(circle1X, circle1Y, smallCircleRadius, 'white');
