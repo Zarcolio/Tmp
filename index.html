@@ -33,36 +33,44 @@
       ctx.strokeStyle = color;
       ctx.lineWidth = 2;
 
-      // Head
-      ctx.beginPath();
-      ctx.arc(x, y - size * 0.3, size * 0.1, 0, 2 * Math.PI);
-      ctx.stroke();
-      ctx.closePath();
-
       // Body
       ctx.beginPath();
-      ctx.moveTo(x, y - size * 0.2);
-      ctx.lineTo(x, y + size * 0.3);
+      ctx.moveTo(x, y - size);
+      ctx.lineTo(x, y + size);
       ctx.stroke();
       ctx.closePath();
 
-      // Arms
+      // Left Arm
       ctx.beginPath();
-      ctx.moveTo(x, y - size * 0.1);
-      ctx.lineTo(x - size * 0.2, y);
-      ctx.stroke();
-      ctx.moveTo(x, y - size * 0.1);
-      ctx.lineTo(x + size * 0.2, y);
+      ctx.moveTo(x, y - size * 0.4);
+      ctx.lineTo(x - size * 0.6, y);
       ctx.stroke();
       ctx.closePath();
 
-      // Legs
+      // Right Arm
       ctx.beginPath();
-      ctx.moveTo(x, y + size * 0.3);
-      ctx.lineTo(x - size * 0.1, y + size * 0.5);
+      ctx.moveTo(x, y - size * 0.4);
+      ctx.lineTo(x + size * 0.6, y);
       ctx.stroke();
-      ctx.moveTo(x, y + size * 0.3);
-      ctx.lineTo(x + size * 0.1, y + size * 0.5);
+      ctx.closePath();
+
+      // Left Leg
+      ctx.beginPath();
+      ctx.moveTo(x, y + size);
+      ctx.lineTo(x - size * 0.4, y + size * 1.8);
+      ctx.stroke();
+      ctx.closePath();
+
+      // Right Leg
+      ctx.beginPath();
+      ctx.moveTo(x, y + size);
+      ctx.lineTo(x + size * 0.4, y + size * 1.8);
+      ctx.stroke();
+      ctx.closePath();
+
+      // Head
+      ctx.beginPath();
+      ctx.arc(x, y - size * 1.2, size * 0.3, 0, 2 * Math.PI);
       ctx.stroke();
       ctx.closePath();
     }
