@@ -42,35 +42,29 @@
 
       // Left Arm
       ctx.beginPath();
-      ctx.moveTo(x, y - size * 0.4);
-      ctx.lineTo(x - size * 0.6, y);
+      ctx.moveTo(x, y);
+      ctx.lineTo(x - size * 0.6, y - size * 0.6);
       ctx.stroke();
       ctx.closePath();
 
       // Right Arm
       ctx.beginPath();
-      ctx.moveTo(x, y - size * 0.4);
-      ctx.lineTo(x + size * 0.6, y);
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + size * 0.6, y - size * 0.6);
       ctx.stroke();
       ctx.closePath();
 
       // Left Leg
       ctx.beginPath();
       ctx.moveTo(x, y + size);
-      ctx.lineTo(x - size * 0.4, y + size * 1.8);
+      ctx.lineTo(x - size * 0.6, y + size * 1.2);
       ctx.stroke();
       ctx.closePath();
 
       // Right Leg
       ctx.beginPath();
       ctx.moveTo(x, y + size);
-      ctx.lineTo(x + size * 0.4, y + size * 1.8);
-      ctx.stroke();
-      ctx.closePath();
-
-      // Head
-      ctx.beginPath();
-      ctx.arc(x, y - size * 1.2, size * 0.3, 0, 2 * Math.PI);
+      ctx.lineTo(x + size * 0.6, y + size * 1.2);
       ctx.stroke();
       ctx.closePath();
     }
@@ -99,7 +93,7 @@
       // Draw the second stick figure
       drawStickFigure(stickFigure2X, stickFigure2Y, smallStickFigureSize, 'white');
 
-      // Update the angle for next frame
+      // Update the angle for the next frame
       angle += 0.01;
 
       requestAnimationFrame(animateStickFigures);
