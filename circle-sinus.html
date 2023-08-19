@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sinus Wave Circle</title>
+    <title>Sinus Wave Circle</title>
 </head>
 <body>
-  <canvas id="myCanvas" width="400" height="400"></canvas>
+    <canvas id="canvas"></canvas>
 
-  <script>
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
+    <script>
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const radius = 100;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const amplitude = 20; // Amplitude of the sinus wave
+        const frequency = 0.02; // Frequency of the sinus wave
+        const numWaves = 8; // Number of sinus waves around the circle
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 100;
-    const frequency = 0.03;
-    const amplitude = 50;
-    const speed = 0.1;
+        canvas.width = 400;
+        canvas.height = 400;
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+        function draw() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-      ctx.stroke();
+            context.beginPath();
+            context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            context.stroke();
 
-      ctx.beginPath();
-      for (let angle = 0; angle <= Math.PI * 2; angle += 0.01) {
-        const x = centerX + radius * Math.cos(angle);
-        const y = centerY + amplitude * Math.sin(angle * frequency + speed * Date.now());
+            context.beginPath();
+            for (let angle = 0; angle <= 2 * Math.PI; angle += 0.01) {
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle) + amplitude * Math.sin(numWaves * angle * frequency);
+                context.lineTo(x, y);
+            }
+            context.stroke();
 
-        ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = 'blue';
-      ctx.stroke();
-      
-      requestAnimationFrame(draw);
-    }
+            requestAnimationFrame(draw);
+        }
 
-    draw();
-  </script>
+        draw();
+    </script>
 </body>
 </html>
