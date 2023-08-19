@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sinus Wave Circle</title>
+    <title>Circular Sinusoidal Wave</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <canvas id="waveCanvas"></canvas>
 
     <script>
-        const canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('waveCanvas');
         const context = canvas.getContext('2d');
-        const radius = 100;
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
-        const amplitude = 20; // Amplitude of the sinus wave
-        const frequency = 0.02; // Frequency of the sinus wave
-        const numWaves = 8; // Number of sinus waves around the circle
+        const radius = 100;
+        const frequency = 0.03;
+        const amplitude = 50;
 
         canvas.width = 400;
         canvas.height = 400;
 
-        function draw() {
+        function drawCircularWave(angle) {
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             context.beginPath();
-            context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            for (let x = 0; x <= canvas.width; x++) {
+                const y = centerY + Math.sin(angle + x * frequency) * amplitude;
+                context.lineTo(x, y);
+            }
+            context.strokeStyle = 'blue';
             context.stroke();
 
             context.beginPath();
-            for (let angle = 0; angle <= 2 * Math.PI; angle += 0.01) {
-                const x = centerX + radius * Math.cos(angle);
-                const y = centerY + radius * Math.sin(angle) + amplitude * Math.sin(numWaves * angle * frequency);
-                context.lineTo(x, y);
-            }
+            context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            context.strokeStyle = 'black';
             context.stroke();
-
-            requestAnimationFrame(draw);
         }
 
-        draw();
+        let angle = 0;
+        function animate() {
+            drawCircularWave(angle);
+            angle += 0.03; // Adjust speed here
+            requestAnimationFrame(animate);
+        }
+
+        animate();
     </script>
 </body>
 </html>
