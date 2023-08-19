@@ -1,44 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sinus Wave Circle</title>
-  <style>
-    canvas {
-      border: 1px solid black;
-    }
-  </style>
+    <title>Sinus Wave Circle</title>
 </head>
 <body>
-  <canvas id="canvas" width="400" height="400"></canvas>
-
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 300;
-    const frequency = 0.005; // Adjust this value for more or fewer waves
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
-      
-      for (let angle = 0; angle <= Math.PI * 2; angle += 0.01) {
-        const x = centerX + radius * Math.cos(angle);
-        const y = centerY + radius * Math.sin(angle + frequency * x);
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
         
-        if (angle === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
+        // Set canvas size
+        const canvasSize = 400;
+        canvas.width = canvasSize;
+        canvas.height = canvasSize;
+
+        // Set circle properties
+        const radius = 100;
+        const centerX = canvasSize / 2;
+        const centerY = canvasSize / 2;
+        const amplitude = 20; // Sinus wave amplitude
+        const frequency = 0.05; // Sinus wave frequency
+        const points = 360; // Number of points to draw
+        
+        context.lineWidth = 2;
+        context.strokeStyle = 'blue';
+        
+        // Draw the circle using sinus wave points
+        context.beginPath();
+        for (let angle = 0; angle <= Math.PI * 2; angle += (Math.PI * 2) / points) {
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + amplitude * Math.sin(frequency * angle);
+            context.lineTo(x, y);
         }
-      }
-      
-      ctx.strokeStyle = 'blue';
-      ctx.stroke();
-    }
-    
-    draw();
-  </script>
+        context.closePath();
+        context.stroke();
+    </script>
 </body>
 </html>
