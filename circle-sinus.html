@@ -1,41 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sinus Wave Circle</title>
+    <title>Sinus Wave Circle</title>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 100;
-    const amplitude = 50;
-    const frequency = 0.1; // Adjust this to change the number of waves
-    
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.beginPath();
-      ctx.moveTo(centerX + radius, centerY);
-      
-      for (let angle = 0; angle <= Math.PI * 2; angle += 0.01) {
-        const x = centerX + radius * Math.cos(angle);
-        const y = centerY + amplitude * Math.sin(frequency * angle);
-        ctx.lineTo(x, y);
-      }
-      
-      ctx.strokeStyle = 'blue';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
-    
-    draw();
-  </script>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const radius = 100;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        function drawSinusWaveCircle() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+
+            for (let angle = 0; angle <= Math.PI * 2; angle += 0.01) {
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                ctx.lineTo(x, y);
+            }
+
+            ctx.strokeStyle = 'blue';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        drawSinusWaveCircle();
+    </script>
 </body>
 </html>
