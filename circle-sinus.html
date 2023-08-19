@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sinus Wave Circle</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById("myCanvas");
+    const context = canvas.getContext("2d");
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 100;
+    const frequency = 0.02; // Adjust this value to control the frequency of the wave
+    const amplitude = 50;   // Adjust this value to control the amplitude of the wave
+
+    function drawCircleWithWave() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      context.stroke();
+      context.closePath();
+
+      context.beginPath();
+      for (let angle = 0; angle <= Math.PI * 2; angle += 0.01) {
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + amplitude * Math.sin(frequency * angle);
+        context.lineTo(x, y);
+      }
+      context.stroke();
+      context.closePath();
+    }
+
+    drawCircleWithWave();
+  </script>
+</body>
+</html>
 
