@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Cleaner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: calc(100% - 22px);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>URL Cleaner</h2>
+        <input type="text" id="urlInput" placeholder="Enter URL here...">
+        <button onclick="cleanURL()">Clean URL</button>
+        <input type="text" id="cleanedUrl" placeholder="Cleaned URL will appear here..." readonly>
+        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+
+    <script>
+        function cleanURL() {
+            let urlInput = document.getElementById('urlInput').value;
+            if (!urlInput || !urlInput.trim()) {
+                alert("Please enter a valid URL.");
+                return;
+            }
+
+            try {
+                let cleanedUrl = new URL(urlInput);
+                let paramsToRemove = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'ad_id', 'campaign_id', 'adset_id', 'fb_action_ids', 'fb_action_types', 'gclid', 'dclid', 'msclkid', '_ga', '_gac', '_gid', 'utm_reader', 'utm_place', 'utm_userid', 'utm_viz_id'];
+
+                paramsToRemove.forEach(param => cleanedUrl.searchParams.delete(param));
+                document.getElementById('cleanedUrl').value = cleanedUrl.toString();
+            } catch (e) {
+                alert("Invalid URL provided.");
+            }
+        }
+
+        function copyToClipboard() {
+            const cleanedUrl = document.getElementById('cleanedUrl');
+            cleanedUrl.select();
+            document.execCommand('copy');
+        }
+    </script>
+</body>
+</html>
