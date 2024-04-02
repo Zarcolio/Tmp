@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Cleaner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,6 +35,45 @@
             font-size: 14px;
             line-height: 1.5;
             margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-icon {
+            color: #70b3ed;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            width: 280px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #f9f9f9 transparent transparent transparent;
+        }
+
+        .info-icon:hover .tooltip {
+            visibility: visible;
         }
 
         input, button {
@@ -62,7 +102,12 @@
 <body>
     <div class="container">
         <h2>URL Cleaner</h2>
-        <p>This tool helps you remove tracking parameters from URLs. Simply paste the URL in the input box below, and the tool will generate a cleaner version without common tracking parameters. This will enhance privacy and make URLs cleaner.</p>
+        <p>This tool helps you remove tracking parameters 
+            <span class="info-icon"><i class="fas fa-info-circle"></i>
+                <span class="tooltip">Parameters removed include: utm_source, utm_medium, utm_campaign, utm_term, utm_content, fbclid, ad_id, campaign_id, adset_id, fb_action_ids, fb_action_types, gclid, dclid, msclkid, _ga, _gac, _gid, utm_reader, utm_place, utm_userid, utm_viz_id.</span>
+            </span>
+            from URLs.
+        </p>
         <input type="text" id="urlInput" placeholder="Enter URL here...">
         <button onclick="cleanURL()">Clean URL</button>
         <input type="text" id="cleanedUrl" placeholder="Cleaned URL will appear here..." readonly>
