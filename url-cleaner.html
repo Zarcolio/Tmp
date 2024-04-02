@@ -40,15 +40,7 @@
         }
 
         .info-icon {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-color: #70b3ed;
-            color: white;
-            text-align: center;
-            line-height: 20px;
-            border-radius: 50%;
-            font-size: 14px;
+            color: #70b3ed;
             cursor: pointer;
             margin-left: 5px;
         }
@@ -111,7 +103,7 @@
     <div class="container">
         <h2>URL Cleaner</h2>
         <p>This tool helps you remove tracking parameters 
-            <span class="info-icon">i
+            <span class="info-icon"><i class="fas fa-info-circle"></i>
                 <span class="tooltip">Parameters removed include: utm_source, utm_medium, utm_campaign, utm_term, utm_content, fbclid, ad_id, campaign_id, adset_id, fb_action_ids, fb_action_types, gclid, dclid, msclkid, _ga, _gac, _gid, utm_reader, utm_place, utm_userid, utm_viz_id.</span>
             </span>
             from URLs.
@@ -132,4 +124,20 @@
 
             try {
                 let cleanedUrl = new URL(urlInput);
-                let paramsToRemove = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', '
+                let paramsToRemove = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'ad_id', 'campaign_id', 'adset_id', 'fb_action_ids', 'fb_action_types', 'gclid', 'dclid', 'msclkid', '_ga', '_gac', '_gid', 'utm_reader', 'utm_place', 'utm_userid', 'utm_viz_id'];
+
+                paramsToRemove.forEach(param => cleanedUrl.searchParams.delete(param));
+                document.getElementById('cleanedUrl').value = cleanedUrl.toString();
+            } catch (e) {
+                alert("Invalid URL provided.");
+            }
+        }
+
+        function copyToClipboard() {
+            const cleanedUrl = document.getElementById('cleanedUrl');
+            cleanedUrl.select();
+            document.execCommand('copy');
+        }
+    </script>
+</body>
+</html>
