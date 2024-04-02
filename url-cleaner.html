@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Cleaner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,16 +40,16 @@
         }
 
         .info-icon {
-            cursor: pointer;
             display: inline-block;
             width: 20px;
             height: 20px;
-            line-height: 20px;
-            text-align: center;
             background-color: #70b3ed;
             color: white;
+            text-align: center;
+            line-height: 20px;
             border-radius: 50%;
-            font-size: 16px;
+            font-size: 14px;
+            cursor: pointer;
             margin-left: 5px;
         }
 
@@ -64,7 +65,7 @@
             z-index: 1;
             bottom: 125%;
             left: 50%;
-            margin-left: -140px; /* Center the tooltip */
+            margin-left: -60px;
             box-shadow: 0 5px 10px rgba(0,0,0,0.2);
         }
 
@@ -110,7 +111,7 @@
     <div class="container">
         <h2>URL Cleaner</h2>
         <p>This tool removes tracking parameters
-            <span class="info-icon" onclick="event.stopPropagation();">&#9432;
+            <span class="info-icon">i
                 <span class="tooltip">Parameters removed include: utm_source, utm_medium, utm_campaign, utm_term, utm_content, fbclid, ad_id, campaign_id, adset_id, fb_action_ids, fb_action_types, gclid, dclid, msclkid, _ga, _gac, _gid, utm_reader, utm_place, utm_userid, utm_viz_id.</span>
             </span>
             from URLs.
@@ -131,20 +132,4 @@
 
             try {
                 let cleanedUrl = new URL(urlInput);
-                let paramsToRemove = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'ad_id', 'campaign_id', 'adset_id', 'fb_action_ids', 'fb_action_types', 'gclid', 'dclid', 'msclkid', '_ga', '_gac', '_gid', 'utm_reader', 'utm_place', 'utm_userid', 'utm_viz_id'];
-
-                paramsToRemove.forEach(param => cleanedUrl.searchParams.delete(param));
-                document.getElementById('cleanedUrl').value = cleanedUrl.toString();
-            } catch (e) {
-                alert("Invalid URL provided.");
-            }
-        }
-
-        function copyToClipboard() {
-            const cleanedUrl = document.getElementById('cleanedUrl');
-            cleanedUrl.select();
-            document.execCommand('copy');
-        }
-    </script>
-</body>
-</html>
+                let paramsToRemove = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', '
